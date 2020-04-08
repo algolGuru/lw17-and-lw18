@@ -6,7 +6,7 @@ PROCEDURE ReadDigit(VAR F: TEXT; VAR D: INTEGER);{ReadDigit}
 VAR
    Ch: CHAR;
 BEGIN{ReadDigit}
-  D := -1;{���� �� ���������� ����� � �����, �� ��������� ���������� -1}
+  D := -1;{Åñëè íå âñòðåòèòñÿ öèðôà â ôàéëå, òî ïðîöåäóðà âîçâðàùàåò -1}
   IF NOT(EOLN)
   THEN
     READ(F, Ch);  
@@ -27,7 +27,7 @@ VAR
 BEGIN{ReadNumber}
   N := 0;
   I := 0;
-  WHILE NOT(EOLN(F)) AND (N >= 0) AND (I <> -1)
+  WHILE NOT(EOLN(F)) AND (N >= 0) AND (I <> -1)//Добавил проверку на I <> -1, чтобы  число считывалось до первого нецифрового символа и предотвратил возможность нахождения в ней мусорного значения инициализировав ее
   DO
     BEGIN        
       ReadDigit(F, I);
@@ -50,7 +50,7 @@ BEGIN{ReadNumber}
     END;  
   READLN(F)  
 END;{ReadNumber} 
-BEGIN
+BEGIN{Stat}
   Error := FALSE;
   Max := 0;
   Min := MAXINT;
@@ -88,5 +88,5 @@ BEGIN
     END
   ELSE
     WRITELN('Error')         
-END.
+    END.{Stat}
   
