@@ -1,6 +1,7 @@
-PROGRAM ReadNumberApp(INPUT, OUTPUT);{ReadNumberApp}
+Program Stat(INPUT, OUTPUT);
 VAR
-  Num: INTEGER;
+  Min, Max, Avg, NumCount, Sum, Num: INTEGER;  
+  Error: BOOLEAN;
 PROCEDURE ReadDigit(VAR F: TEXT; VAR D: INTEGER);{ReadDigit}
 VAR
    Ch: CHAR;
@@ -18,7 +19,7 @@ BEGIN{ReadDigit}
   IF Ch = '7' THEN D := 7 ELSE
   IF Ch = '8' THEN D := 8 ELSE
   IF Ch = '9' THEN D := 9 ELSE
-  IF Ch = '0' THEN D := 0 ELSE   
+  IF Ch = '0' THEN D := 0;    
 END;{ReadDigit}  
 PROCEDURE ReadNumber(VAR F: TEXT; VAR N: INTEGER);{ReadNumber}
 VAR 
@@ -45,11 +46,47 @@ BEGIN{ReadNumber}
             END                                            
           ELSE
             N := -1            
-        END       
-    END;
+        END    
+    END;  
   READLN(F)  
-END;{ReadNumber}
-BEGIN{ReadNumberApp}
-  ReadNumber(INPUT, Num); 
-  WRITELN('Number is ', Num)   
-END.{ReadNumberApp}      
+END;{ReadNumber} 
+BEGIN
+  Error := FALSE;
+  Max := 0;
+  Min := MAXINT;
+  Sum := 0;
+  Num := 0;
+  NumCount := 0;
+  Avg := 0;
+  WRITELN('Inut your numbers ');
+  WHILE (NOT EOLN(INPUT)) AND (NOT Error)
+  DO
+    BEGIN   
+      ReadNumber(INPUT, Num);       
+      IF (Num = -1) OR ((MAXINT - Num) < Sum)
+      THEN
+        Error := TRUE;
+      NumCount := NumCount + 1;         
+      IF (NOT Error)
+      THEN
+        BEGIN
+          IF (Min > Num)
+          THEN
+            Min := Num;
+          IF (Max < Num)
+          THEN
+            Max := Num;
+          Sum := Sum + Num                                   
+        END            
+    END;   
+  IF (NOT Error) AND (NumCount > 0)
+  THEN
+    BEGIN
+      WRITELN('Average is: ', Sum DIV NumCount, '.', Sum MOD NumCount * 100 DIV NumCount);
+      WRITELN('Min number is: ', Min);
+      WRITELN('Max number is: ', Max)
+    END
+  ELSE
+    WRITELN('Error')         
+END.
+  
