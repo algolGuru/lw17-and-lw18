@@ -51,5 +51,9 @@ BEGIN{ReadNumber}
 END;{ReadNumber}
 BEGIN{ReadNumberApp}
   ReadNumber(INPUT, Num); 
-  WRITELN('Number is ', Num)   
+  IF N <> -1
+  THEN
+    WRITELN('Number is ', Num)
+  ELSE
+    WRITELN('Overflow')
 END.{ReadNumberApp}      
