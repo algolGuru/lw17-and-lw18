@@ -24,7 +24,7 @@ PROCEDURE ReadNumber(VAR F: TEXT; VAR N: INTEGER);{ReadNumber}
 VAR 
  I: INTEGER;
 BEGIN{ReadNumber}
-  N := -1;
+  N := 0;
   WHILE NOT(EOLN(F)) AND (N >= 0)
   DO
     BEGIN        
