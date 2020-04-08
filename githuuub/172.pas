@@ -48,7 +48,6 @@ BEGIN{ReadNumber}
     END
 END;{ReadNumber}
 BEGIN{ReadNumberApp}
-  WRITELN(MAXINT);
   ReadNumber(INPUT, Num); 
   IF Num = -1                    
   THEN                                                  
