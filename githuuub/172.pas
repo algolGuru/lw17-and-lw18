@@ -51,7 +51,7 @@ BEGIN{ReadNumber}
 END;{ReadNumber}
 BEGIN{ReadNumberApp}
   ReadNumber(INPUT, Num); 
-  IF N <> -1
+  IF Num <> -1
   THEN
     WRITELN('Number is ', Num)
   ELSE
