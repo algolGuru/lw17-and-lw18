@@ -6,7 +6,7 @@ PROCEDURE ReadDigit(VAR F: TEXT; VAR D: INTEGER);{ReadDigit}
 VAR
    Ch: CHAR;
 BEGIN{ReadDigit}
-  D := -1;{Если не встретится цирфа в файле, то процедура возвращает -1}
+  D := -1;{Г…Г±Г«ГЁ Г­ГҐ ГўГ±ГІГ°ГҐГІГЁГІГ±Гї Г¶ГЁГ°ГґГ  Гў ГґГ Г©Г«ГҐ, ГІГ® ГЇГ°Г®Г¶ГҐГ¤ГіГ°Г  ГўГ®Г§ГўГ°Г Г№Г ГҐГІ -1}
   IF NOT(EOLN)
   THEN
     READ(F, Ch);  
@@ -65,7 +65,7 @@ BEGIN
       IF (Num = -1) OR ((MAXINT - Num) < Sum)
       THEN
         Error := TRUE;
-      IF NumCount <> MAXINT - 1
+      IF NumCount <> MAXINT - 1   {Check Overflow for Nums counter}  
       THEN 
         NumCount := NumCount + 1
       ELSE
@@ -79,7 +79,7 @@ BEGIN
           IF (Max < Num)
           THEN
             Max := Num;
-          IF NOT Error
+          IF NOT Error  {Check Overflow for Sum of nums}
           THEN  
             Sum := Sum + Num                                   
         END            
