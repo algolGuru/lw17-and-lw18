@@ -19,7 +19,7 @@ BEGIN{SortDate}
   DO
   {Поместить новую дату в DateFile в соответствующее место}
     BEGIN
-      ReadDate(FInput,D);
+      ReadDate(FInput, D);
       READLN(FInput);
       IF (D.Mo <> NoMonth)
       THEN
@@ -40,9 +40,15 @@ BEGIN{SortDate}
           {копируем D в TFile}
           WRITE(TFile, D); 
           {копируем остаток DateFile в TFile}
-          IF (NOT Copying)
+          IF NOT (Copying)
           THEN
             WRITE(TFile, VarDate);
+          WHILE NOT(EOF(DateFile))
+          DO
+            BEGIN
+              READ(DateFile, VarDate);
+              WRITE(TFile, VarDate)   
+            END;    
           {Подготавливаем файлы к копированию}  
           REWRITE(DateFile);    
           RESET(TFile);  
@@ -58,5 +64,5 @@ BEGIN{SortDate}
     END;
   {Копируем DateFile в OUTPUT}    
   RESET(DateFile);
-  CopyOut(DateFile);  
+  CopyOut(DateFile)  
 END.{SortDate}

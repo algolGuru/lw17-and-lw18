@@ -47,8 +47,7 @@ BEGIN{ReadNumber}
           ELSE
             N := -1            
         END    
-    END;  
-  READLN(F)  
+    END;    
 END;{ReadNumber} 
 BEGIN
   Error := FALSE;
@@ -66,7 +65,11 @@ BEGIN
       IF (Num = -1) OR ((MAXINT - Num) < Sum)
       THEN
         Error := TRUE;
-      NumCount := NumCount + 1;         
+      IF NumCount <> MAXINT - 1
+      THEN 
+        NumCount := NumCount + 1
+      ELSE
+        Error := TRUE;            
       IF (NOT Error)
       THEN
         BEGIN
@@ -76,7 +79,9 @@ BEGIN
           IF (Max < Num)
           THEN
             Max := Num;
-          Sum := Sum + Num                                   
+          IF NOT Error
+          THEN  
+            Sum := Sum + Num                                   
         END            
     END;   
   IF (NOT Error) AND (NumCount > 0)
@@ -88,5 +93,4 @@ BEGIN
     END
   ELSE
     WRITELN('Error')         
-END.
-  
+END.  
