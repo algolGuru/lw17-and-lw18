@@ -5,7 +5,7 @@ PROCEDURE ReadDigit(VAR F: TEXT; VAR D: INTEGER);{ReadDigit}
 VAR
    Ch: CHAR;
 BEGIN{ReadDigit}
-  D := -1;{Åñëè íå âñòðåòèòñÿ öèðôà â ôàéëå, òî ïðîöåäóðà âîçâðàùàåò -1}
+  D := -1;{Ã…Ã±Ã«Ã¨ Ã­Ã¥ Ã¢Ã±Ã²Ã°Ã¥Ã²Ã¨Ã²Ã±Ã¿ Ã¶Ã¨Ã°Ã´Ã  Ã¢ Ã´Ã Ã©Ã«Ã¥, Ã²Ã® Ã¯Ã°Ã®Ã¶Ã¥Ã¤Ã³Ã°Ã  Ã¢Ã®Ã§Ã¢Ã°Ã Ã¹Ã Ã¥Ã² -1}
   IF NOT(EOLN)
   THEN
     READ(F, Ch);  
@@ -24,6 +24,7 @@ PROCEDURE ReadNumber(VAR F: TEXT; VAR N: INTEGER);{ReadNumber}
 VAR 
  I: INTEGER;
 BEGIN{ReadNumber}
+  N := 0;
   WHILE NOT(EOLN(F)) AND (N >= 0)
   DO
     BEGIN        
