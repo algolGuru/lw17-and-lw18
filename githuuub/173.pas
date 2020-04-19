@@ -90,5 +90,5 @@ BEGIN{Stat}
     END
   ELSE
     WRITELN('Error')         
-    END.{Stat}
+END.{Stat}
   
