@@ -36,7 +36,7 @@ BEGIN{WriteSieve}
 END;{WriteSieve}
 PROCEDURE FindSimpleNumbers(VAR SieveWindowX, SieveWindowY: INTEGER; VAR SieveOfNumbers: SetOfNumbers);
 BEGIN{FindSimpleNumbers}
-  WHILE SieveWindowX <= SQRT(Max)
+WHILE SieveWindowX <= SQRT(Max) {Достаточно проходить лишь до корня от максимума, а не до Максимума }
   DO
     BEGIN
       SieveWindowY := SieveWindowX;
@@ -46,7 +46,7 @@ BEGIN{FindSimpleNumbers}
           IF (SieveWindowY MOD SieveWindowX = 0) AND (SieveWindowY <> SieveWindowX) 
           THEN
             SieveOfNumbers := SieveOfNumbers - [SieveWindowY]; 
-          SieveWindowY := SieveWindowY + SieveWindowX                     
+            SieveWindowY := SieveWindowY + SieveWindowX {Шаг окна не 1, а число равное x, так как нам нужно искать те, что делятся на x}                    
         END;  
       SieveWindowX := SieveWindowX + 1  
     END;
@@ -55,7 +55,7 @@ BEGIN{Prime}
   Sieve := [Min .. Max];
   X := Min;
   Y := Min;
-  WriteSieve(X);
-  FindSimpleNumbers(X, Y, Sieve);
-  WriteSimpleNumbersSieve(X, Sieve)
+  WriteSieve(X); {Печать начального множества}
+  FindSimpleNumbers(X, Y, Sieve); {Поиск простых чисел}
+  WriteSimpleNumbersSieve(X, Sieve) {Вывод множества простых}
 END.{Prime}          
